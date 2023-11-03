@@ -1,0 +1,750 @@
+{
+	"elements"		: [
+		{
+			"name"				: "Media Carousel Slider",
+			"handle"			: "media-carousel-slider",
+			"hoverCustomizations"	: true,
+			"customizations"	: "box"
+		},
+        {
+			"name"				: "Slide",
+			"handle"			: "slide",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+                "opacity"		: 80,
+			}
+		},
+        {
+			"name"				: "Slide (current)",
+			"handle"			: "slide-current",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+                "opacity"		: 100,
+			}
+		},
+        {
+			"name"				: "Media",
+			"handle"			: "media",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: ["background-color", "border-radius", "border", "opacity", "filter"],
+			"defaults"		: {
+                "border-radius"		: 10,
+			}
+		},
+		{
+			"name"				: "Caption",
+			"handle"			: "caption",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "all",
+			"defaults"		: {
+				"color"				: "#FFFFFFFF",
+				"background-color"	: "#00000011",
+				"padding"			: 10,
+				"margin"			: 10,
+                "border-radius"		: 5,
+                "backdrop-filter"	: {"blur":5},
+			}
+		},
+		{
+			"name"				: "Button",
+			"handle"			: "button",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "all",
+			"defaults"		: {
+			}
+		},
+		{
+			"name"				: "Controls",
+			"handle"			: "controls",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+              "border-radius": 100,
+              "background-color":"#00000044",
+              "backdrop-filter": {"blur":4},
+              "padding": 10,
+              "margin": 10,
+			}
+		},
+		{
+			"name"				: "Dot",
+			"handle"			: "dot",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+              "border-radius": 50,
+              "background-color":"#FFFFFF",
+              "margin": 5,
+              "opacity":60
+			},
+            "defaultsHover"		: {
+              "opacity":100
+			}
+		},
+		{
+			"name"				: "Dot (current)",
+			"handle"			: "dot-current",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+              "opacity":100
+			}
+		},
+		{
+			"name"				: "Arrow",
+			"handle"			: "arrow",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "all",
+			"defaults"		: {
+              "border-radius": 50,
+              "color":"#FFFFFF",
+              "margin": 5,
+			}
+		},
+		{
+			"name"				: "Arrow (disabled)",
+			"handle"			: "arrow-disabled",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "all",
+			"defaults"		: {
+              "opacity": 60
+			}
+		},
+	],
+	"properties"	: [
+		{
+			"name"			: "Autoslide",
+			"variable"		: "autoslide",
+			"type"			: "checkbox",
+			"default"		: true
+		},
+		{
+			"name"			: "Slides Duration",
+			"variable"		: "duration",
+			"cssVariable"	: true,
+			"type"			: "number",
+			"default"		: 4,
+			"min"			: 1,
+			"max"			: 15,
+			"integer"		: true,
+			"unit"			: "s",
+			"showWhen"		: {"variable": "autoslide", "value": true}
+		},
+		{
+			"name"			: "Controls",
+			"variable"		: "controls",
+			"type"			: "dropdown",
+			"default"		: "dots",
+			"options"		: [
+				{
+					"name"	: "None",
+					"value"	: "none"
+				},
+				{
+					"name"	: "Dots",
+					"value"	: "dots"
+				},
+				{
+					"name"	: "Arrows",
+					"value"	: "arrows"
+				}
+			]
+		},
+		{
+			"name"			: "Size of controls",
+			"variable"		: "sizeControls",
+			"type"			: "slider",
+			"cssVariable"	: true,
+			"default"		: 1,
+			"min"			: 0.25,
+			"max"			: 4
+		},
+		{
+			"name"			: "Transition Speed",
+			"variable"		: "transition",
+			"cssVariable"	: true,
+			"type"			: "slider",
+			"default"		: 0.5,
+			"min"			: 0,
+			"max"			: 2,
+			"unit"			: "s"
+		},
+		{
+			"name"			: "Gap between slides",
+			"variable"		: "gap",
+			"type"			: "slider",
+			"cssVariable"	: true,
+            "unit"			: "%",
+			"default"		: 10,
+			"min"			: 0,
+			"max"			: 100
+		},
+        {
+			"name"			: "Width of Slides",
+			"variable"		: "width",
+			"type"			: "slider",
+			"cssVariable"	: true,
+			"unit"			: "px",
+			"integer"		: true,
+			"default"		: 600,
+			"min"			: 100,
+			"max"			: 1200
+		},
+        {
+			"name"			: "Aspect Ratio of Slides",
+			"variable"		: "ratio",
+			"type"			: "slider",
+			"cssVariable"	: true,
+			"default"		: 1.7,
+			"min"			: 0.1,
+			"max"			: 6
+		},
+		{
+			"name"			: "Caption Horizontal Alignment",
+			"variable"		: "horizontalAlign",
+			"type"			: "dropdown",
+			"cssVariable"	: true,
+			"default"		: "center",
+			"options"		: [
+				{
+					"name"	: "Left",
+					"value"	: "left"
+				},
+				{
+					"name"	: "Center",
+					"value"	: "center"
+				},
+				{
+					"name"	: "Right",
+					"value"	: "right"
+				}
+			]
+		},
+		{
+			"name"			: "Caption Vertical Alignment",
+			"variable"		: "verticalAlign",
+			"type"			: "dropdown",
+			"default"		: "end",
+			"cssVariable"	: true,
+			"options"		: [
+				{
+					"name"	: "Above slide",
+					"value"	: "above"
+				},
+				{
+					"name"	: "Top",
+					"value"	: "start"
+				},
+				{
+					"name"	: "Middle",
+					"value"	: "center"
+				},
+				{
+					"name"	: "Bottom",
+					"value"	: "end"
+				},
+				{
+					"name"	: "Below slide",
+					"value"	: "below"
+				}
+			]
+		},
+		{
+			"name"			: "In the AlpacApp preview mode, only the first slide will show. To view the full slider, you need to open the live site.",
+			"type"			: "instruction",
+			"level"			: "info"
+		},
+		{
+			"name"			: "Number of Slides",
+			"variable"		: "nslides",
+			"type"			: "number",
+			"default"		: 3,
+			"integer"		: true,
+			"min"			: 1,
+			"max"			: 12
+		},
+		{
+			"name"			: "Slide 1",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video1",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image1",
+					"cssVariable"	: true,
+					"type"			: "image",
+					"default"		: "https://images.unsplash.com/photo-1550029402-226115b7c579?ixid=M3wzOTQxNjF8MHwxfHNlYXJjaHw5fHxpcGhvbmV8ZW58MHx8fHwxNjk4OTg0OTA5fDA&ixlib=rb-4.0.3&auto=format&q=80&w=1000",
+                    "showWhen"		: {"variable": "video1", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption1",
+					"type"			: "richText",
+					"default"		: "Caption this..."
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link1",
+					"type"			: "url",
+					"default"		: "https://alpac.app/"
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button1",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 1}
+		},
+		{
+			"name"			: "Slide 2",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video2",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image2",
+					"cssVariable"	: true,
+					"type"			: "image",
+					"default"		: "https://images.unsplash.com/photo-1523329110005-297cf111f8de?ixid=M3wzOTQxNjF8MHwxfHNlYXJjaHw0OXx8aXBob25lfGVufDB8fHx8MTY5ODk4NDkxMXww&ixlib=rb-4.0.3&auto=format&q=80&w=1000",
+                    "showWhen"		: {"variable": "video2", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption2",
+					"type"			: "richText",
+					"default"		: "Caption this..."
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link2",
+					"type"			: "url",
+					"default"		: "https://alpac.app/"
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button2",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 2}
+		},
+		{
+			"name"			: "Slide 3",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video3",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: "https://static.ybouane.com/alpacapp/iphone-15.mp4"
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image3",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video3", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption3",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link3",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button3",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 3}
+		},
+		{
+			"name"			: "Slide 4",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video4",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image4",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video4", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption4",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link4",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button4",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 4}
+		},
+		{
+			"name"			: "Slide 5",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video5",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image5",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video5", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption5",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link5",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button5",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 5}
+		},
+		{
+			"name"			: "Slide 6",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video6",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image6",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video6", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption6",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link6",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button6",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 6}
+		},
+		{
+			"name"			: "Slide 7",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video7",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image7",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video7", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption7",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link7",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button7",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 7}
+		},
+		{
+			"name"			: "Slide 8",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video8",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image8",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video8", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption8",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link8",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button8",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 8}
+		},
+      
+		{
+			"name"			: "Slide 9",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video9",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image9",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video9", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption9",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link9",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button9",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 9}
+		},
+		{
+			"name"			: "Slide 10",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video10",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image10",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video10", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption10",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link10",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button10",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 10}
+		},
+		{
+			"name"			: "Slide 11",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video11",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image11",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video11", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption11",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link11",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button11",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 11}
+		},
+		{
+			"name"			: "Slide 12",
+			"type"			: "section",
+			"fields"		: [
+				{
+					"name"			: "Video (optional)",
+					"variable"		: "video12",
+					"cssVariable"	: true,
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Image",
+					"variable"		: "image12",
+					"cssVariable"	: true,
+					"type"			: "image",
+                    "showWhen"		: {"variable": "video12", "comparator": "==", "value": ""}
+				},
+				{
+					"name"			: "Caption",
+					"variable"		: "caption12",
+					"type"			: "richText",
+					"default"		: ""
+				},
+				{
+					"name"			: "Link",
+					"variable"		: "link12",
+					"type"			: "url",
+					"default"		: ""
+				},
+				{
+					"name"			: "Button (optional)",
+					"variable"		: "button12",
+					"type"			: "text",
+					"default"		: ""
+				}
+			],
+			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 12}
+		},
+	]
+}

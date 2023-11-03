@@ -1,0 +1,40 @@
+<media-carousel-slider data-n-slides="{{ nslides }}" {% if autoslide %}data-duration="{{ duration }}"{% endif %} alpacapp-element="media-carousel-slider">
+	{% for i in (1..nslides) %}
+		{%- assign caption		= "caption" | append: i | get -%}
+		{%- assign button 		= "button" | append: i | get -%}
+		{%- assign link 		= "link" | append: i | get -%}
+		{%- assign video 		= "video" | append: i | get -%}
+		{%- assign image 		= "image" | append: i | get -%}
+		<media-carousel-slide data-slide="{{ i }}" {% if link %}data-link="{{ link }}"{% endif %} alpacapp-element="slide{{ ' slide-current' | if: i, '==', 1 }}">
+			{%- if caption -%}
+				<div alpacapp-element="caption">
+                    {{ caption | richText }}
+                    {%- if button -%}
+                        {%- if link -%}
+                            <a href="{{ link }}" alpacapp-element="button _button-large _button">{{ button | singlelineText }}</a>
+                        {%- else -%}
+                            <span alpacapp-element="button _button-large _button">{{ button | singlelineText }}</span>
+                        {%- endif -%}
+            		{%- endif -%}
+                </div>
+			{%- endif -%}
+            {% if video %}
+              <video src="{{ video }}" playsinline muted loop alpacapp-element="media" draggable="false"></video>
+            {% else %}
+              <img {{ image | image_srcset: 0.8 }} alt="{{ image.alt }}" alpacapp-element="media" draggable="false" />
+            {% endif %}
+		</media-carousel-slide>
+	{% endfor %}
+    {% if controls=="dots" %}
+    <slider-controls alpacapp-element="controls">
+        {% for i in (1..nslides) %}
+            <slider-dot data-slide="{{ i }}" alpacapp-element="dot{{ ' dot-current' | if: i, '==', 1 }}"></slider-dot>
+        {% endfor %}
+    </slider-controls>
+    {% elsif controls=="arrows" %}
+    <slider-controls alpacapp-element="controls">
+        <slider-prev alpacapp-element="arrow arrow-disabled"></slider-prev>
+        <slider-next alpacapp-element="arrow"></slider-next>
+    </slider-controls>
+    {% endif %}
+</media-carousel-slider>

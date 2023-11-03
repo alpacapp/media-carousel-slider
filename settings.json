@@ -1,0 +1,11 @@
+{
+    "name": "Media Carousel Slider",
+    "handle": "media-carousel-slider",
+    "author": "alpacapp",
+    "category": "media",
+    "description": "Versatile video/photo carousel with autoplay capability, swipe-to-slide, interactive navigation dots, and rich text captions.",
+    "entry": "block.liquid",
+    "stylesheet": "style.css",
+    "script": "script.js",
+    "icon": "view_carousel"
+}

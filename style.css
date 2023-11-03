@@ -1,0 +1,134 @@
+#_BLOCK_ media-carousel-slider {
+  overflow:hidden;
+  display: grid;
+  grid-template-columns:auto;
+  grid-template-rows:auto auto;
+  align-items:center;
+  justify-items:center;
+  touch-action: none;
+  --delta-x:0px;
+  --delta-x-v:0px;
+  --current-slide:1;
+  --width-v:min(100vw / (1 + {{ "gap--withoutUnit" | css_var }} / 100), {{ "width" | css_var }});
+  {% if verticalAlign=="below" %}
+  align-items:start;
+  {% elsif verticalAlign=="above" %}
+  align-items:end;
+  {% endif %}
+  &[data-swiping] media-carousel-slide {
+    --delta-x-v:var(--delta-x);
+    transition:none;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+  & media-carousel-slide {
+    grid-row:1 / 2;
+    grid-column:1 / 2;
+    --slide-height: calc(var(--width-v) / {{ "ratio" | css_var }});
+    display:grid;
+    grid-template-rows:var(--slide-height);
+    grid-template-columns:auto;
+    width:var(--width-v);
+    transform:translateX(calc((var(--slide) - var(--current-slide)) * (var(--width-v) * (1 + {{ "gap--withoutUnit" | css_var }} / 100)) + var(--delta-x-v)));
+    position:relative;
+    overflow:hidden;
+    transition:all {{ "transition" | css_var }};
+    &[alpacapp-element*="slide-current"][data-link] {
+      cursor:pointer;
+    }
+    &>div {
+      grid-row:1 / 2;
+      grid-column:1 / 2;
+      justify-self:{{ "horizontalAlign" | css_var }};
+      {% if verticalAlign!="below" and verticalAlign!="above" %}
+      align-self:{{ "verticalAlign" | css_var }};
+      {% endif %}
+      cursor:default;
+    }
+    &:not([alpacapp-element*="slide-current"])>div {
+      pointer-events:none;
+    }
+    &>img, &>video {
+      grid-row:1 / 2;
+      grid-column:1 / 2;
+      object-fit:cover;
+      object-position:center center;
+      align-self:stretch;
+      justify-self:stretch;
+      width:100%;
+      height:100%;
+      z-index:-1;
+    }
+
+    {% if verticalAlign=="below" %}
+    grid-template-rows:var(--slide-height) auto;
+    &>div {
+      grid-row:2 / 3;
+    }
+    {% elsif verticalAlign=="above" %}
+    grid-template-rows:auto var(--slide-height);
+    &>img, &>video {
+      grid-row:2 / 3;
+    }
+    {% endif %}
+
+    &[data-slide="1"] {--slide:1;}
+    &[data-slide="2"] {--slide:2;}
+    &[data-slide="3"] {--slide:3;}
+    &[data-slide="4"] {--slide:4;}
+    &[data-slide="5"] {--slide:5;}
+    &[data-slide="6"] {--slide:6;}
+    &[data-slide="7"] {--slide:7;}
+    &[data-slide="8"] {--slide:8;}
+    &[data-slide="9"] {--slide:9;}
+    &[data-slide="10"] {--slide:10;}
+    &[data-slide="11"] {--slide:11;}
+    &[data-slide="12"] {--slide:12;}
+  }
+  {% if controls=="arrows" %}
+  --slider-caret:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492.004 492.004"><path d="M382.678 226.804L163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z" fill="white" /></svg>');
+  {% endif %}
+  & slider-controls {
+    display:flex;
+    flex-flow:row nowrap;
+    align-items:center;
+    justify-content:center;
+    & slider-dot, & slider-prev, & slider-next {
+      aspect-ratio:1;
+      cursor:pointer;
+    }
+    & slider-dot {
+      width:calc(10px * {{ "sizeControls" | css_var }});
+    }
+    & slider-prev::before {
+      transform:rotate(180deg);
+    }
+    & slider-prev, & slider-next {
+      width:calc(30px * {{ "sizeControls" | css_var }});
+      display:flex;
+      position:relative;
+      flex-flow:row nowrap;
+      align-items:stretch;
+      justify-items:stretch;
+      &[alpacapp-element*="arrow-disabled"] {
+        cursor:inherit;
+      }
+      &::before {
+        content:'';
+        position:absolute;
+        width:fill-available;
+        width:-webkit-fill-available;
+        aspect-ratio:1;
+        background-color:currentcolor;
+        mask-image: var(--slider-caret);
+        mask-size: 80% auto;
+        mask-repeat: no-repeat;
+        mask-position: center center;
+        -webkit-mask-image: var(--slider-caret);
+        -webkit-mask-size: 80% auto;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center center;
+      }
+    }
+  }
+}
