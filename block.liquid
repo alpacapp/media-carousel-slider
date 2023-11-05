@@ -1,4 +1,4 @@
-<media-carousel-slider data-n-slides="{{ nslides }}" {% if autoslide %}data-duration="{{ duration }}"{% endif %} alpacapp-element="media-carousel-slider">
+<media-carousel-slider data-n-slides="{{ nslides }}" {% if autoslide %}data-duration="{{ duration }}"{% endif %} data-controls-location="{{ controlsLocation }}" alpacapp-element="media-carousel-slider">
 	{% for i in (1..nslides) %}
 		{%- assign caption		= "caption" | append: i | get -%}
 		{%- assign button 		= "button" | append: i | get -%}
@@ -29,6 +29,20 @@
     <slider-controls alpacapp-element="controls">
         {% for i in (1..nslides) %}
             <slider-dot data-slide="{{ i }}" alpacapp-element="dot{{ ' dot-current' | if: i, '==', 1 }}"></slider-dot>
+        {% endfor %}
+    </slider-controls>
+    {% elsif controls=="swatches" %}
+    <slider-controls alpacapp-element="controls">
+        {% for i in (1..nslides) %}
+            {% assign swIm = "swatchImage" | append: i | get %}
+            <slider-swatch data-slide="{{ i }}" alpacapp-element="swatch{{ ' swatch-current' | if: i, '==', 1 }}" style="--swatch-color:{{ "swatch" | append: i | get }};{% if swIm %}--swatch-image:url({{ swIm | image_url: 200}});{% endif %}"></slider-swatch>
+        {% endfor %}
+    </slider-controls>
+    {% elsif controls=="text" %}
+    <slider-controls alpacapp-element="controls">
+        {% for i in (1..nslides) %}
+            {% assign swIm = "textControl" | append: i | get %}
+            <slider-text-control data-slide="{{ i }}" alpacapp-element="textcontrol{{ ' textcontrol-current' | if: i, '==', 1 }}">{{ "textControl" | append: i | get | richText }}</slider-text-control>
         {% endfor %}
     </slider-controls>
     {% elsif controls=="arrows" %}

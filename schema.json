@@ -101,6 +101,62 @@
 			}
 		},
 		{
+			"name"				: "Swatch",
+			"handle"			: "swatch",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+              "border-radius": 50,
+              "border-width": 2,
+              "border-color": "#00000033",
+              "padding": 2,
+              "margin": 5,
+			},
+            "defaultsHover"		: {
+              "border-color": "#00000088",
+			}
+		},
+		{
+			"name"				: "Swatch (current)",
+			"handle"			: "swatch-current",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "box",
+			"defaults"		: {
+              "border-color": "#00000088",
+			}
+		},
+		{
+			"name"				: "Text control",
+			"handle"			: "textcontrol",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "all",
+			"defaults"		: {
+              "color":"#FFFFFF",
+              "opacity":60,
+              "border-radius": 5,
+              "padding": 8,
+              "margin": 10,
+			},
+            "defaultsHover"		: {
+              "opacity":100
+			}
+		},
+		{
+			"name"				: "Text control (current)",
+			"handle"			: "textcontrol-current",
+			"hoverCustomizations"	: true,
+			"activeCustomizations"	: true,
+			"customizations"	: "all",
+			"defaults"		: {
+              "opacity":100
+			},
+            "defaultsHover"		: {
+			}
+		},
+		{
 			"name"				: "Arrow",
 			"handle"			: "arrow",
 			"hoverCustomizations"	: true,
@@ -159,6 +215,37 @@
 				{
 					"name"	: "Arrows",
 					"value"	: "arrows"
+				},
+				{
+					"name"	: "Swatches",
+					"value"	: "swatches"
+				},
+				{
+					"name"	: "Text",
+					"value"	: "text"
+				}
+			]
+		},		{
+			"name"			: "Controls Location",
+			"variable"		: "controlsLocation",
+			"type"			: "dropdown",
+			"default"		: "bottom",
+			"options"		: [
+				{
+					"name"	: "Top",
+					"value"	: "top"
+				},
+				{
+					"name"	: "Left",
+					"value"	: "left"
+				},
+				{
+					"name"	: "Right",
+					"value"	: "right"
+				},
+				{
+					"name"	: "Bottom",
+					"value"	: "bottom"
 				}
 			]
 		},
@@ -169,7 +256,8 @@
 			"cssVariable"	: true,
 			"default"		: 1,
 			"min"			: 0.25,
-			"max"			: 4
+			"max"			: 4,
+            "showWhen"		: {"variable": "controls", "comparator":"!=", "value": "text"}
 		},
 		{
 			"name"			: "Transition Speed",
@@ -311,6 +399,26 @@
 					"variable"		: "button1",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch1",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage1",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl1",
+					"type"			: "richText",
+                    "default": "Slide 1",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 1}
@@ -351,6 +459,26 @@
 					"variable"		: "button2",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch2",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage2",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl2",
+					"type"			: "richText",
+                    "default": "Slide 2",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 2}
@@ -390,6 +518,26 @@
 					"variable"		: "button3",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch3",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage3",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl3",
+					"type"			: "richText",
+                    "default": "Slide 3",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 3}
@@ -429,6 +577,26 @@
 					"variable"		: "button4",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch4",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage4",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl4",
+					"type"			: "richText",
+                    "default": "Slide 4",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 4}
@@ -468,6 +636,26 @@
 					"variable"		: "button5",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch5",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage5",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl5",
+					"type"			: "richText",
+                    "default": "Slide 5",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 5}
@@ -507,6 +695,26 @@
 					"variable"		: "button6",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch6",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage6",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl6",
+					"type"			: "richText",
+                    "default": "Slide 6",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 6}
@@ -546,6 +754,26 @@
 					"variable"		: "button7",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch7",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage7",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl7",
+					"type"			: "richText",
+                    "default": "Slide 7",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 7}
@@ -585,6 +813,26 @@
 					"variable"		: "button8",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch8",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage8",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl8",
+					"type"			: "richText",
+                    "default": "Slide 8",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 8}
@@ -625,6 +873,26 @@
 					"variable"		: "button9",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch9",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage9",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl9",
+					"type"			: "richText",
+                    "default": "Slide 9",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 9}
@@ -664,6 +932,26 @@
 					"variable"		: "button10",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch10",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage10",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl10",
+					"type"			: "richText",
+                    "default": "Slide 10",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 10}
@@ -703,6 +991,26 @@
 					"variable"		: "button11",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch11",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage11",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl11",
+					"type"			: "richText",
+                    "default": "Slide 11",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 11}
@@ -742,6 +1050,26 @@
 					"variable"		: "button12",
 					"type"			: "text",
 					"default"		: ""
+				},
+				{
+					"name"			: "Swatch Color",
+					"variable"		: "swatch12",
+					"type"			: "color",
+					"default"		: "#FFFFFF",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Swatch Image (optional)",
+					"variable"		: "swatchImage12",
+					"type"			: "image",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "swatches"}
+				},
+				{
+					"name"			: "Text control",
+					"variable"		: "textControl12",
+					"type"			: "richText",
+                    "default": "Slide 12",
+                    "showWhen"	: {"variable": "controls", "comparator": "==", "value": "text"}
 				}
 			],
 			"showWhen"	: {"variable": "nslides", "comparator": ">=", "value": 12}

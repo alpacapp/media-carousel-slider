@@ -1,6 +1,8 @@
 const $slider = document.querySelector('#_BLOCK_ media-carousel-slider');
 const $slides = [...$slider.querySelectorAll('media-carousel-slide')];
 const $dots = [...$slider.querySelectorAll('slider-dot')];
+const $swatches = [...$slider.querySelectorAll('slider-swatch')];
+const $textControls = [...$slider.querySelectorAll('slider-text-control')];
 const $prev = document.querySelector('#_BLOCK_ slider-prev');
 const $next = document.querySelector('#_BLOCK_ slider-next');
 const $videos = [...$slider.querySelectorAll('video')];
@@ -10,7 +12,9 @@ const setSlide = (idx=1)=>{
   currentSlide = idx;
   $slider.style.setProperty('--current-slide', idx);
   $slides.forEach(($s, i)=>$s.setAttribute('alpacapp-element', 'slide'+(i+1===idx?' slide-current':'')));
-  $dots?.forEach(($c, i)=>$c.setAttribute('alpacapp-element', 'dot'+(i+1===idx?' dot-current':'')));
+  $dots.forEach(($c, i)=>$c.setAttribute('alpacapp-element', 'dot'+(i+1===idx?' dot-current':'')));
+  $swatches.forEach(($c, i)=>$c.setAttribute('alpacapp-element', 'swatch'+(i+1===idx?' swatch-current':'')));
+  $textControls.forEach(($c, i)=>$c.setAttribute('alpacapp-element', 'textcontrol'+(i+1===idx?' textcontrol-current':'')));
   if(currentSlide==1) {
     $prev?.setAttribute('alpacapp-element', 'arrow arrow-disabled');
   } else {
@@ -40,8 +44,8 @@ const stopAutoSlide = ()=>clearTimeout(timer);
 timer = setTimeout(autoSlide, {{ duration | json }}*1000);
 {% endif %}
 
-$dots.forEach($dot=>$dot.addEventListener('click', (e)=>{
-  setSlide($dots.indexOf(e.target)+1);
+[...$dots, ...$swatches, ...$textControls].forEach($dot=>$dot.addEventListener('click', function(e){
+  setSlide(parseInt(this.getAttribute('data-slide')));
   stopAutoSlide();
 }));
 $slides.forEach($slide=>$slide.addEventListener('click', (e)=>{
@@ -80,11 +84,11 @@ $prev?.addEventListener('click', ()=>{
 $slider.addEventListener('pointerdown', (e) => {
   stopAutoSlide();
   $slider.style.setProperty('--delta-x', '0px');
-  $slider.setAttribute('data-swiping', '');
   let startX = e.clientX;
   let lastX = e.clientX;
   let lastTime = performance.now();
   const updateX = (e) => {
+    $slider.setAttribute('data-swiping', '');
     let lastX = e.clientX;
     let lastTime = performance.now();
     $slider.style.setProperty('--delta-x', (e.clientX - startX)+'px');

@@ -1,8 +1,8 @@
 #_BLOCK_ media-carousel-slider {
   overflow:hidden;
   display: grid;
-  grid-template-columns:auto;
-  grid-template-rows:auto auto;
+  grid-template-columns:auto 1fr auto;
+  grid-template-rows:auto auto auto;
   align-items:center;
   justify-items:center;
   touch-action: none;
@@ -22,8 +22,8 @@
     user-select:none;
   }
   & media-carousel-slide {
-    grid-row:1 / 2;
-    grid-column:1 / 2;
+    grid-row:2 / 3;
+    grid-column:1 / 4;
     --slide-height: calc(var(--width-v) / {{ "ratio" | css_var }});
     display:grid;
     grid-template-rows:var(--slide-height);
@@ -93,12 +93,47 @@
     flex-flow:row nowrap;
     align-items:center;
     justify-content:center;
-    & slider-dot, & slider-prev, & slider-next {
+    {% if controlsLocation=="top" %}
+      grid-column:1 / 4;
+      grid-row:1 / 2;
+    {% elsif controlsLocation=="left" %}
+      flex-flow:column nowrap;
+      grid-column:1 / 2;
+      grid-row:2 / 3;
+    {% elsif controlsLocation=="right" %}
+      flex-flow:column nowrap;
+      grid-column:3 / 4;
+      grid-row:2 / 3;
+    {% elsif controlsLocation=="bottom" %}
+      grid-column:1 / 4;
+      grid-row:3 / 4;
+    {% endif %}
+    & slider-dot, & slider-prev, & slider-next, & slider-swatch {
       aspect-ratio:1;
       cursor:pointer;
     }
+    & slider-text-control {
+      cursor:pointer;
+      display:block;
+      align-self:stretch;
+    }
     & slider-dot {
       width:calc(10px * {{ "sizeControls" | css_var }});
+    }
+    & slider-swatch {
+      width:calc(30px * {{ "sizeControls" | css_var }});
+      display:grid;
+      align-items:stretch;
+      justify-items:stretch;
+      &::before {
+        content:'';
+        border-radius:inherit;
+        display:block;
+        background-color:var(--swatch-color);
+        background-image:var(--swatch-image, none);
+        background-size:cover;
+        background-position:center center;
+      }
     }
     & slider-prev::before {
       transform:rotate(180deg);
