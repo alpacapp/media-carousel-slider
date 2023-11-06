@@ -82,6 +82,8 @@ $prev?.addEventListener('click', ()=>{
 
 
 $slider.addEventListener('pointerdown', (e) => {
+  if(e.button!=0)
+    return;
   stopAutoSlide();
   $slider.style.setProperty('--delta-x', '0px');
   let startX = e.clientX;
@@ -93,11 +95,12 @@ $slider.addEventListener('pointerdown', (e) => {
     let lastTime = performance.now();
     $slider.style.setProperty('--delta-x', (e.clientX - startX)+'px');
   };
-  document.addEventListener('pointermove', updateX);
-  document.addEventListener('pointerup', (e)=>{
+  const stopUpdate = (e)=>{
     let velocity = (e.clientX-lastX)/Math.max(0.01, performance.now() - lastTime);
     $slider.removeAttribute('data-swiping');
     document.removeEventListener('pointermove', updateX);
+    document.removeEventListener('pointerup', stopUpdate);
+    document.removeEventListener('pointercancel', stopUpdate);
     e.stopImmediatePropagation();
     let endX = e.clientX + velocity * 250;
     let deltaSlide = Math.round((endX - startX) / (Math.min(window.innerWidth, {{ width }}) + {{ gap }}));
@@ -108,5 +111,8 @@ $slider.addEventListener('pointerdown', (e) => {
       }, 0);
       setSlide(Math.max(1, Math.min(nSlides, currentSlide - deltaSlide)));
     }
-  }, {once:true});
+  };
+  document.addEventListener('pointermove', updateX);
+  document.addEventListener('pointerup', stopUpdate);
+  document.addEventListener('pointercancel', stopUpdate);
 });
