@@ -7,7 +7,7 @@
 		{%- assign image 		= "image" | append: i | get -%}
 		<media-carousel-slide data-slide="{{ i }}" {% if link %}data-link="{{ link }}"{% endif %} alpacapp-element="slide{{ ' slide-current' | if: i, '==', 1 }}">
 			{%- if caption -%}
-				<div alpacapp-element="caption">
+				<div alpacapp-element="caption" alpacapp-richText>
                     {{ caption | richText }}
                     {%- if button -%}
                         {%- if link -%}
@@ -42,7 +42,7 @@
     <slider-controls alpacapp-element="controls">
         {% for i in (1..nslides) %}
             {% assign swIm = "textControl" | append: i | get %}
-            <slider-text-control data-slide="{{ i }}" alpacapp-element="textcontrol{{ ' textcontrol-current' | if: i, '==', 1 }}">{{ "textControl" | append: i | get | richText }}</slider-text-control>
+            <slider-text-control data-slide="{{ i }}" alpacapp-element="textcontrol{{ ' textcontrol-current' | if: i, '==', 1 }}" alpacapp-richText>{{ "textControl" | append: i | get | richText }}</slider-text-control>
         {% endfor %}
     </slider-controls>
     {% elsif controls=="arrows" %}
