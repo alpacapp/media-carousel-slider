@@ -150,7 +150,6 @@
       }
       &::before {
         content:'';
-        position:absolute;
         width:fill-available;
         width:-webkit-fill-available;
         aspect-ratio:1;
